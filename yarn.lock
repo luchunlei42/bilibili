@@ -1826,6 +1826,15 @@
   dependencies:
     "follow-redirects" "^1.10.0"
 
+"axios@1.2.3":
+  "integrity" "sha512-pdDkMYJeuXLZ6Xj/Q5J3Phpe+jbGdsSzlQaFVkMQzRUL05+6+tetX8TV3p4HrU4kzuO9bt+io/yGQxuyxA/xcw=="
+  "resolved" "https://registry.npmjs.org/axios/-/axios-1.2.3.tgz"
+  "version" "1.2.3"
+  dependencies:
+    "follow-redirects" "^1.15.0"
+    "form-data" "^4.0.0"
+    "proxy-from-env" "^1.1.0"
+
 "babel-helper-vue-jsx-merge-props@^2.0.0":
   "integrity" "sha1-Iq69OzOQIyjlEyk6jkmSs4T58bY="
   "resolved" "https://registry.npm.taobao.org/babel-helper-vue-jsx-merge-props/download/babel-helper-vue-jsx-merge-props-2.0.3.tgz"
@@ -1891,6 +1900,11 @@
   "integrity" "sha1-6D46fj8wCzTLnYf2FfoMvzV2kO4="
   "resolved" "https://registry.npm.taobao.org/balanced-match/download/balanced-match-1.0.2.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fbalanced-match%2Fdownload%2Fbalanced-match-1.0.2.tgz"
   "version" "1.0.2"
+
+"balloon-css@^1.0.3":
+  "integrity" "sha512-urXwkHgwp6GsXVF+it01485Z2Cj4pnW02ICnM0TemOlkKmCNnDLmyy+ZZiRXBpwldUXO+aRNr7Hdia4CBvXJ5A=="
+  "resolved" "https://registry.npmjs.org/balloon-css/-/balloon-css-1.2.0.tgz"
+  "version" "1.2.0"
 
 "base@^0.11.1":
   "integrity" "sha1-e95c7RRbbVUakNuH+DxVi060io8="
@@ -2557,7 +2571,7 @@
   "resolved" "https://registry.npm.taobao.org/colorette/download/colorette-1.2.2.tgz?cache=0&sync_timestamp=1614259623635&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fcolorette%2Fdownload%2Fcolorette-1.2.2.tgz"
   "version" "1.2.2"
 
-"combined-stream@^1.0.6", "combined-stream@~1.0.6":
+"combined-stream@^1.0.6", "combined-stream@^1.0.8", "combined-stream@~1.0.6":
   "integrity" "sha1-w9RaizT9cwYxoRCoolIGgrMdWn8="
   "resolved" "https://registry.npm.taobao.org/combined-stream/download/combined-stream-1.0.8.tgz"
   "version" "1.0.8"
@@ -3242,6 +3256,15 @@
   "resolved" "https://registry.npm.taobao.org/dotenv/download/dotenv-8.2.0.tgz"
   "version" "8.2.0"
 
+"dplayer@^1.22.2", "dplayer@^1.27.1":
+  "integrity" "sha512-2laBMXs5V1B9zPwJ7eAIw/OBo+Xjvy03i4GHTk3Cg+IWbrq8rKMFO0fFr6ClAYotYOCcFGOvaJDkOZcgKllsCA=="
+  "resolved" "https://registry.npmjs.org/dplayer/-/dplayer-1.27.1.tgz"
+  "version" "1.27.1"
+  dependencies:
+    "axios" "1.2.3"
+    "balloon-css" "^1.0.3"
+    "promise-polyfill" "8.3.0"
+
 "duplexer@^0.1.1":
   "integrity" "sha1-Or5DrvODX4rgd9E23c4PJ2sEAOY="
   "resolved" "https://registry.npm.taobao.org/duplexer/download/duplexer-0.1.2.tgz"
@@ -3417,6 +3440,11 @@
     "is-callable" "^1.1.4"
     "is-date-object" "^1.0.1"
     "is-symbol" "^1.0.2"
+
+"es6-promise@^4.2.8":
+  "integrity" "sha512-HJDGx5daxeIvxdBxvG2cb9g4tEvwIk3i8+nhX0yGrYmZUzbkdg8QbDevheDB8gd0//uPj4c1EQua8Q+MViT0/w=="
+  "resolved" "https://registry.npmmirror.com/es6-promise/-/es6-promise-4.2.8.tgz"
+  "version" "4.2.8"
 
 "escalade@^3.1.1":
   "integrity" "sha1-2M/ccACWXFoBdLSoLqpcBVJ0LkA="
@@ -3748,10 +3776,18 @@
     "inherits" "^2.0.3"
     "readable-stream" "^2.3.6"
 
-"follow-redirects@^1.0.0", "follow-redirects@^1.10.0":
-  "integrity" "sha1-5VmK1QF0wbxOhyMB6CrCzZf5Amc="
-  "resolved" "https://registry.npm.taobao.org/follow-redirects/download/follow-redirects-1.13.3.tgz"
-  "version" "1.13.3"
+"flv.js@^1.6.2":
+  "integrity" "sha512-xre4gUbX1MPtgQRKj2pxJENp/RnaHaxYvy3YToVVCrSmAWUu85b9mug6pTXF6zakUjNP2lFWZ1rkSX7gxhB/2A=="
+  "resolved" "https://registry.npmmirror.com/flv.js/-/flv.js-1.6.2.tgz"
+  "version" "1.6.2"
+  dependencies:
+    "es6-promise" "^4.2.8"
+    "webworkify-webpack" "^2.1.5"
+
+"follow-redirects@^1.0.0", "follow-redirects@^1.10.0", "follow-redirects@^1.15.0":
+  "integrity" "sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA=="
+  "resolved" "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.15.2.tgz"
+  "version" "1.15.2"
 
 "for-in@^1.0.2":
   "integrity" "sha1-gQaNKVqBQuwKxybG4iAMMPttXoA="
@@ -3762,6 +3798,15 @@
   "integrity" "sha1-+8cfDEGt6zf5bFd60e1C2P2sypE="
   "resolved" "https://registry.npm.taobao.org/forever-agent/download/forever-agent-0.6.1.tgz"
   "version" "0.6.1"
+
+"form-data@^4.0.0":
+  "integrity" "sha512-ETEklSGi5t0QMZuiXoA/Q6vcnxcLQP5vdugSpuAyi6SVGi2clPPp+xgEhuMaHC+zGgn31Kd235W35f7Hykkaww=="
+  "resolved" "https://registry.npmjs.org/form-data/-/form-data-4.0.0.tgz"
+  "version" "4.0.0"
+  dependencies:
+    "asynckit" "^0.4.0"
+    "combined-stream" "^1.0.8"
+    "mime-types" "^2.1.12"
 
 "form-data@~2.3.2":
   "integrity" "sha1-3M5SwF9kTymManq5Nr1yTO/786Y="
@@ -5544,6 +5589,11 @@
   "resolved" "https://registry.npm.taobao.org/normalize-wheel/download/normalize-wheel-1.0.1.tgz"
   "version" "1.0.1"
 
+"nplayer@^1.0.15":
+  "integrity" "sha512-QONvD0+ZvorQNOghe55FY10ebNv6yDnr2QgHs8JdessOex+vVNSKZz88Rl9RBMflb4+MRpeMVJpkTpji0XzVCg=="
+  "resolved" "https://registry.npmjs.org/nplayer/-/nplayer-1.0.15.tgz"
+  "version" "1.0.15"
+
 "npm-run-path@^2.0.0":
   "integrity" "sha1-NakjLfo11wZ7TLLd8jV7GHFTbF8="
   "resolved" "https://registry.npm.taobao.org/npm-run-path/download/npm-run-path-2.0.2.tgz"
@@ -6376,6 +6426,11 @@
   "resolved" "https://registry.npm.taobao.org/promise-inflight/download/promise-inflight-1.0.1.tgz"
   "version" "1.0.1"
 
+"promise-polyfill@8.3.0":
+  "integrity" "sha512-H5oELycFml5yto/atYqmjyigJoAo3+OXwolYiH7OfQuYlAqhxNvTfiNMbV9hsC6Yp83yE5r2KTVmtrG6R9i6Pg=="
+  "resolved" "https://registry.npmjs.org/promise-polyfill/-/promise-polyfill-8.3.0.tgz"
+  "version" "8.3.0"
+
 "promise-queue-plus@^1.2.2":
   "integrity" "sha512-As9heS6Jv7BpPmNd8aUAOHwCsK6khqEIb5UqwXHHJia6KKrnSPNC4sQRhDEh8MnEIE7ydOygzCs6buPEsotwaQ=="
   "resolved" "https://registry.npmmirror.com/promise-queue-plus/-/promise-queue-plus-1.2.2.tgz"
@@ -6392,6 +6447,11 @@
   dependencies:
     "forwarded" "~0.1.2"
     "ipaddr.js" "1.9.1"
+
+"proxy-from-env@^1.1.0":
+  "integrity" "sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg=="
+  "resolved" "https://registry.npmjs.org/proxy-from-env/-/proxy-from-env-1.1.0.tgz"
+  "version" "1.1.0"
 
 "prr@~1.0.1":
   "integrity" "sha1-0/wRS6BplaRexok/SEzrHXj19HY="
@@ -7945,6 +8005,19 @@
   "resolved" "https://registry.npmjs.org/vue-cli-plugin-style-resources-loader/-/vue-cli-plugin-style-resources-loader-0.1.5.tgz"
   "version" "0.1.5"
 
+"vue-dplayer@^0.0.10":
+  "integrity" "sha512-l6d6OnhEUO87lhAees9mEBUFsG5Thqv/VeEVZlSQ993/S0oxvWTDLjjkzH59hO2PALimBK2kB6yNYsHyJBgotw=="
+  "resolved" "https://registry.npmjs.org/vue-dplayer/-/vue-dplayer-0.0.10.tgz"
+  "version" "0.0.10"
+  dependencies:
+    "dplayer" "^1.22.2"
+    "vue-github-badge" "1.0.1"
+
+"vue-github-badge@1.0.1":
+  "integrity" "sha512-8X+FUWapnnDfs6cRUg3mCfHUf2r5arUfCSRdvbIn860oj9us3Rz3VOtioUgmfzh6EhaaYTs0Oh78EzJ+Z6uqAA=="
+  "resolved" "https://registry.npmjs.org/vue-github-badge/-/vue-github-badge-1.0.1.tgz"
+  "version" "1.0.1"
+
 "vue-hot-reload-api@^2.3.0":
   "integrity" "sha1-UylVzB6yCKPZkLOp+acFdGV+CPI="
   "resolved" "https://registry.npm.taobao.org/vue-hot-reload-api/download/vue-hot-reload-api-2.3.4.tgz"
@@ -8185,6 +8258,11 @@
   "integrity" "sha1-f4RzvIOd/YdgituV1+sHUhFXikI="
   "resolved" "https://registry.npm.taobao.org/websocket-extensions/download/websocket-extensions-0.1.4.tgz"
   "version" "0.1.4"
+
+"webworkify-webpack@^2.1.5":
+  "integrity" "sha512-2akF8FIyUvbiBBdD+RoHpoTbHMQF2HwjcxfDvgztAX5YwbZNyrtfUMgvfgFVsgDhDPVTlkbb5vyasqDHfIDPQw=="
+  "resolved" "https://registry.npmmirror.com/webworkify-webpack/-/webworkify-webpack-2.1.5.tgz"
+  "version" "2.1.5"
 
 "which-boxed-primitive@^1.0.2":
   "integrity" "sha1-E3V7yJsgmwSf5dhkMOIc9AqJqOY="

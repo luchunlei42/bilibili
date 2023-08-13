@@ -6,6 +6,7 @@
         <el-select
           @focus="closeIt"
           ref="selectIt"
+          @change="emitEvent"
           v-model="selected"
           multiple
           filterable
@@ -43,8 +44,16 @@
 
 export default {
   name: "TagSelect",
+  model: {
+    prop: "selected", //自定义组件通过该属性获取父组件的字段值
+    event: "change" // 父组件通过监听自定义组件发出事件，改变
+  },
   props: {
     tagList: {
+      type: Array,
+      default: () => []
+    },
+    selected: {
       type: Array,
       default: () => []
     }
@@ -53,9 +62,7 @@ export default {
   components: {},
   data() {
     //这里存放数据
-    return {
-      selected: []
-    };
+    return {};
   },
   //监听属性 类似于data概念
   computed: {},
@@ -63,6 +70,9 @@ export default {
   watch: {},
   //方法集合
   methods: {
+    emitEvent(val){
+      this.$emit("change", val);
+    },
     handleSelect(tag) {
       if (!this.selected.find(item => item == tag.tagId)) {
         this.selected.push(tag.tagId);
@@ -75,8 +85,7 @@ export default {
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {},
   //生命周期 - 挂载完成（可以访问DOM元素）
-  mounted() {
-  },
+  mounted() {},
   beforeCreate() {}, //生命周期 - 创建之前
   beforeMount() {}, //生命周期 - 挂载之前
   beforeUpdate() {}, //生命周期 - 更新之前

@@ -178,8 +178,8 @@
     </el-backtop>
     <PlaneWar />
     <!-- 保卫大司马广告 -->
-    <Advertising />
-    <AdvertisingRadish />
+    <!-- <Advertising />
+    <AdvertisingRadish /> -->
   </div>
 </template>
 

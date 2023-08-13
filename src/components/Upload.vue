@@ -2,7 +2,7 @@
   <el-container style="height:100%">
     <el-header style="line-height: 60px; backgroud-color: rgb(255, 255, 255); position: fixed">
       <div>
-        <i class="iconfont icon-bilibili"></i>
+        <i class="iconfont icon-bilibili" @click="goHome"></i>
       </div>
     </el-header>
     <el-main
@@ -78,7 +78,7 @@
                   ></el-cascader>
                 </el-form-item>
                 <el-form-item label="标签">
-                  <tag-select :tagList="recommendTags"></tag-select>
+                  <tag-select :tagList="recommendTags" v-model="videoForm.tags"></tag-select>
                 </el-form-item>
                 <el-form-item label="简介">
                   <el-input
@@ -131,7 +131,7 @@ export default {
         cover: "",
         title: "",
         type: "0",
-        zone: 1,
+        zone: [],
         tags: [],
         description: "",
         scheduled: false,
@@ -158,6 +158,9 @@ export default {
   watch: {},
   //方法集合
   methods: {
+    goHome(){
+      this.$router.push(`/home`);
+    },
     handleAvatarSuccess(res, file) {
       this.imageUrl = URL.createObjectURL(file.raw);
     },
@@ -420,8 +423,8 @@ export default {
       audioElement.addEventListener("loadedmetadata", function() {
         // 视频时长值的获取要等到这个匿名函数执行完毕才产生
         result = audioElement.duration; //得到时长为秒，小数，182.36
-        this.videoForm.duration = parseInt(result); //转为int值
-        console.log(this.videoForm.duration)
+        self.videoForm.duration = parseInt(result); //转为int值
+        console.log(self.videoForm.duration)
       });
     },
     getZones() {
@@ -452,10 +455,26 @@ export default {
       });
     },
     handleSubmission(){
-      uploadVieo(this.videoForm).then(res=>{
+      console.log(this.videoForm)
+      let catId = this.videoForm.zone[this.videoForm.zone.length-1]
+      let form = {
+        bucketName: this.videoForm.bucketName,
+        objectKey: this.videoForm.objectKey,
+        location: "",
+        videoTitle: this.videoForm.title,
+        videoDescription: this.videoForm.description,
+        imgUrl: "",
+        catalogId: catId,
+        type: this.videoForm.type,
+        scheduled: this.videoForm.scheduled?1:0,
+        tagIdList: this.videoForm.tags,
+        duration: this.videoForm.duration
+      }
+      uploadVieo(form).then(res=>{
         console.log(res)
         if (res.code == 200) {
         this.$message.success("投稿成功！");
+        location.reload()
       } else {
         this.$message.error("投稿失败，请重新上传！");
       }

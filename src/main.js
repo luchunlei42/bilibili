@@ -24,7 +24,18 @@ Vue.use(preventReClick);
 import './assets/css/global.css'
 
 import NavBar from "./components/common/NavBar";
+import NavBar2 from "./components/common/NavBarTwo";
+import OffNav from "./components/common/OfficialNavBar"
 import VFooter from "./components/common/footer/VFooter"
+import ToolBar from "./components/common/ToolBar"
+// import { from } from 'core-js/core/array'
+
+//Dplayer
+import VueDPlayer from 'vue-dplayer'
+import 'vue-dplayer/dist/vue-dplayer.css'
+
+Vue.use(VueDPlayer);
+
 
 // 注入工具
 Vue.prototype.$lodash = _;
@@ -38,7 +49,10 @@ Vue.config.productionTip = false
 
 // 注册为全局组件
 Vue.component('nav-bar', NavBar)
+Vue.component('nav-bar2',NavBar2)
 Vue.component('v-footer', VFooter)
+Vue.component('off-nav',OffNav)
+Vue.component('toolbar',ToolBar)
 
 // 2.使用懒加载的插件   3.修改img :src -> v-lazy
 Vue.use(VueLazyLoad, {

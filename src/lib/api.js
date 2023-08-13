@@ -7,7 +7,7 @@ const http = request
 
 
 const uploadVieo = (form)=>{
-    return http.post('/apix/video/upload/frame', {form})
+    return http.post('/apix/video/upload/frame', JSON.stringify(form),{headers: {'Content-Type': 'application/json'}})
 }
 
 const getRecommendTags =(catId) =>{
@@ -58,6 +58,10 @@ const merge = (identifier) => {
     return http.post(`/apix/video/minio/tasks/merge/${identifier}`)
 }
 
+const videoEntity = (id) => {
+    return http.get(`/apix/search/detail/${id}`)
+}
+
 export {
     taskInfo,
     initTask,
@@ -66,4 +70,5 @@ export {
     getZoneTree,
     getRecommendTags,
     uploadVieo,
+    videoEntity
 }

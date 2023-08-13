@@ -12,6 +12,7 @@ const Test = () => import('../components/protectTheHorse/test-time.vue')
 const Detail = () => import('../views/detail/index.vue')
 const Upload = () => import('../components/Upload.vue')
 const Login = () => import('../components/Login.vue')
+const Video = () => import("../components/Video.vue")
 Vue.use(VueRouter)
 
 // 路由操作 no-referrer 解决跨域问题
@@ -38,6 +39,12 @@ const routes = [
       name: "referrer",
       content: "no-referrer",
       requireAuth: true
+    }
+  },{
+    path: '/video/:id', component: Video, meta: {
+      title: "ViliVili--播放",
+      name: "referrer",
+      content: "no-referrer",
     }
   },
   {
