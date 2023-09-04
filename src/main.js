@@ -36,6 +36,9 @@ import 'vue-dplayer/dist/vue-dplayer.css'
 
 Vue.use(VueDPlayer);
 
+import infiniteScroll from "vue-infinite-scroll";
+Vue.use(infiniteScroll);
+
 
 // 注入工具
 Vue.prototype.$lodash = _;

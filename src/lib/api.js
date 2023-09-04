@@ -62,6 +62,30 @@ const videoEntity = (id) => {
     return http.get(`/apix/search/detail/${id}`)
 }
 
+const addLike = (videoId,status,likedPostId) => {
+    return http.post('/apix/thumbup/like', {videoId,status,likedPostId})
+}
+
+const isLikeAPI = (memberId,videoId) => {
+    return http.get('/apix/thumbup/isLike?'+'memberId='+memberId+"&videoId="+videoId)
+}
+
+const getPlayUrl = (k) => {
+    return http.get('/apix/video/playUrl?'+'k='+k)
+}
+
+const sendReplyAPI = (videoId, content, rootId, parentId) =>{
+    return http.post('/apix/reply/post', {videoId,content,rootId,parentId})
+}
+
+const getReplyMain = (vid,ps,pn,cursor) => {
+    return http.get('/apix/reply/main?'+'vid='+vid+"&ps="+ps+"&pn="+pn+(cursor?"&cursor="+cursor:""))
+}
+
+const getFeed = (ps,timestamp,last) => {
+    return http.get('/apix/search/feed?ps='+ps+(timestamp?'&timestamp='+timestamp:'')+(last?'&last='+last:''))
+}
+
 export {
     taskInfo,
     initTask,
@@ -70,5 +94,11 @@ export {
     getZoneTree,
     getRecommendTags,
     uploadVieo,
-    videoEntity
+    videoEntity,
+    addLike,
+    isLikeAPI,
+    getPlayUrl,
+    sendReplyAPI,
+    getReplyMain,
+    getFeed,
 }

@@ -4,7 +4,7 @@
     <div class="video-toolbar-left" data-v-c9c871ec>
       <!---->
       <div class="toolbar-left-item-wrap" data-v-c9c871ec>
-        <div title="点赞（Q）" class="video-like video-toolbar-left-item" data-v-c9c871ec>
+        <div title="点赞（Q）" class="video-like video-toolbar-left-item" v-bind:class="{on : isLike}">
           <!---->
           <svg
             width="36"
@@ -20,7 +20,7 @@
               fill="currentColor"
             />
           </svg>
-          <span class="video-like-info video-toolbar-item-text">1.8万</span>
+          <span class="video-like-info video-toolbar-item-text">{{ like }}</span>
         </div>
         <!---->
       </div>
@@ -332,6 +332,10 @@
 export default {
   //import引入的组件需要注入到对象中才能使用
   name: "toolbar",
+  props: {
+    like: 0,
+    isLike: false
+  },
   components: {},
   data() {
     //这里存放数据

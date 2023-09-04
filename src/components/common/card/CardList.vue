@@ -2,11 +2,11 @@
   <div class="card-list">
     <!-- 楼层标题 -->
     <header class="storey-title">
-      <div class="s-t-left">
+      <div class="s-t-left" v-if="mdnameItem!=''">
         <i class="iconfont icon-donghua"></i>
         <div>{{ getName() }}</div>
       </div>
-      <div class="s-t-right">
+      <div class="s-t-right" v-if="mdnameItem!=''">
         <div class="btn-change">
           <i class="iconfont icon-huanyihuan"></i>
           <span @click="changeIt">&nbsp;换一换</span>
@@ -20,17 +20,12 @@
       </div>
     </header>
     <!-- 楼层内容 -->
-    <div class="storey-content">
-      <div
-        class="s-c-item"
-        v-for="(item, i) in maindataItem"
-        :key="i"
-        @click="jumpPath(item.title)"
-      >
+    <div class="storey-content" v-infinite-scroll="load" infinite-scroll-disabled="disabled">
+      <div class="s-c-item" v-for="(item, i) in items" :key="i" @click="jumpPath(typeof item.vid === 'undefined'?396:item.vid)">
         <!-- 图片 -->
         <div class="item-pic">
           <!-- 3.图片懒加载修改img :src -> v-lazy -->
-          <img v-lazy="item.pic" alt="" />
+          <img v-lazy="item.pic" alt />
           <div class="count">
             <i class="iconfont icon-bofangliang1"></i>
             {{ tenThousand(item.stat.view) }}
@@ -39,13 +34,11 @@
             <i class="iconfont icon-jinbi"></i>
             {{ tenThousand(item.stat.coin) }}
           </div>
-          <div class="duration">
-            {{ timeHandle(item.duration) }}
-          </div>
+          <div class="duration">{{ timeHandle(item.duration) }}</div>
         </div>
         <!-- 标题 -->
         <div class="item-title">
-          <a href="#">{{ item.title }}</a>
+          <a href="#" v-html="item.title"></a>
         </div>
         <!-- up主 -->
         <div class="item-up">
@@ -56,10 +49,12 @@
         </div>
       </div>
     </div>
+    <p v-if="loading">加载中...</p>
   </div>
 </template>
 
 <script>
+import { getFeed } from "../../../lib/api";
 export default {
   name: "CardList",
   props: {
@@ -67,17 +62,47 @@ export default {
       type: Array,
       default() {
         return [];
-      },
+      }
     },
     mdnameItem: {
       type: String,
-      default: "",
-    },
+      default: ""
+    }
   },
   data() {
-    return {};
+    return {
+      loading: false,
+      items: [],
+      timestamp: null,
+      last: null,
+      firstFeed: true
+    };
   },
-  created() {},
+  created() {
+    this.items = this.maindataItem;
+    if (this.mdnameItem == "") {
+      //使用feed流获取
+      getFeed(15, null, null).then(res => {
+        console.log(res);
+        this.timestamp = res.data.timestamp;
+        this.last = res.data.last;
+        for (var i = 0; i < res.data.videos.length; i++) {
+          let video = res.data.videos[i];
+          video.stat = {
+            view: video.view,
+            like: video.like,
+            coin: 5
+          };
+          video.owner = {
+            name : video.nickName
+          }
+          this.items.push(video);
+        }
+        console.log(this.items);
+        this.firstFeed = false;
+      });
+    }
+  },
   mouthed() {
     this.getName();
   },
@@ -85,20 +110,28 @@ export default {
     // 计算数量过万就转换
     tenThousand() {
       // 计算属性是一个属性不是一个方法, 使用函数返回
-      return function (count) {
+      return function(count) {
         if (count >= 100000000) {
           return (count / 100000000).toFixed(1) + "亿";
         }
         return count >= 10000 ? (count / 10000).toFixed(1) + "万" : count;
       };
     },
+    disabled() {
+      return (
+        this.loading ||
+        this.mdnameItem != "" ||
+        this.maindataItem == [] ||
+        this.firstFeed
+      );
+    }
   },
   methods: {
     // 获取标题名字
     getName() {
       // 如果 this.maindataItem 里面有 tname 这个属性就 return ture取反(false)
       // every() 如果数组中检测到有一个元素不满足，则整个表达式返回 false ，且剩余的元素不会再进行检测。
-      if (this.maindataItem.every((item) => !("tname" in item))) {
+      if (this.maindataItem.every(item => !("tname" in item))) {
         return;
       }
       return this.maindataItem[0].tname;
@@ -112,6 +145,10 @@ export default {
 
     // 处理时间
     timeHandle(time) {
+      var n = Number(time);
+      if (isNaN(n)) {
+        return time
+      }
       let timeFormat = "";
       function allTime(time) {
         if (time < 60) {
@@ -136,10 +173,37 @@ export default {
     },
 
     // 点击跳转
-    jumpPath(keyword) {
-      this.$router.push(`/search?keyword=${keyword}`);
+    jumpPath(id) {
+      //this.$router.push(`/search?keyword=${keyword}`);
+      this.$router.push(`/video/${id}`);
     },
-  },
+
+    load() {
+      this.loading = true;
+      setTimeout(() => {
+        // this.loading = false
+        //this.items.push.apply(this.items, this.maindataItem);
+        getFeed(15, this.timestamp, this.last).then(res => {
+          console.log(res);
+          this.timestamp = res.data.timestamp;
+          this.last = res.data.last;
+          for (var i = 0; i < res.data.videos.length; i++) {
+          let video = res.data.videos[i];
+          video.stat = {
+            view: video.view,
+            like: video.like,
+            coin: 5
+          };
+          video.owner = {
+            name : video.nickName
+          }
+          this.items.push(video);
+        }
+        });
+        this.loading = false;
+      }, 2000);
+    }
+  }
 };
 </script>
 

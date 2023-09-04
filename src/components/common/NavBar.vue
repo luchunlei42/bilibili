@@ -4,7 +4,7 @@
     <div class="nav_left">
       <ul>
         <li class="nav_left_item" @click="returnHome">
-          <a href="#/home">
+          <a href="#/home2">
             <i class="iconfont icon-bilibili home_logo"></i>
           </a>
         </li>

@@ -13,11 +13,17 @@ const Detail = () => import('../views/detail/index.vue')
 const Upload = () => import('../components/Upload.vue')
 const Login = () => import('../components/Login.vue')
 const Video = () => import("../components/Video.vue")
+const Home2 = () => import('../components/Home2.vue')
 Vue.use(VueRouter)
 
 // 路由操作 no-referrer 解决跨域问题
 const routes = [
-  { path: '/', redirect: '/home' },
+  { path: '/home2', component: Home2 , meta: {
+    title: "ViliVili",
+    name: "referrer",
+    content: "no-referrer"
+  }},
+  { path: '/', redirect: '/home2' },
   {path: '/login', component: Login, hidden: true},
   {
     path: '/home', component: Home, meta: {
